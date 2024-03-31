@@ -1,0 +1,21 @@
+// Handle form submission
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Fetch the content of test.txt and inject it into the form field
+    fetch('https://cdn.jsdelivr.net/gh/avalidusername007/pkgs/test.txt')
+        .then(response => response.text())
+        .then(text => {
+            document.getElementById('messageField').value = text;
+        })
+        .catch(error => {
+            console.error('Error fetching text file:', error);
+        });
+});
+
+// Display the message in the messageDisplay div
+document.getElementById('myForm').addEventListener('input', function(event) {
+    const message = document.getElementById('messageField').value;
+    document.getElementById('messageDisplay').textContent = message;
+});
